@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thêm Mới Học Bổng</title>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Thêm Mới Học Bổng</h1>
+        <!-- <form id="userForm">
+            <div class="form-group">
+                <label for="tenHB">Tên Học Bổng:</label>
+                <input type="text" class="form-control" id="tenHB" name="tenHB">
+            </div>
+
+            <div class="form-group">
+                <label for="donVi">Đơn Vị:</label>
+                <input type="text" class="form-control" id="donVi" name="donVi">
+            </div>
+
+            <div class="form-group">
+                <label for="dieuKien">Điều Kiện:</label>
+                <input type="text" class="form-control" id="dieuKien" name="dieuKien">
+            </div>
+
+            <div class="form-group">
+                <label for="soTien">Số Tiền:</label>
+                <input type="text" class="form-control" id="soTien" name="soTien">
+            </div>
+
+            <div class="form-group">
+                <label for="cachThamGia">Cách Tham Gia:</label>
+                <input type="text" class="form-control" id="cachThamGia" name="cachThamGia">
+            </div>
+
+            <div class="form-group">
+                <label for="hanDK">Hạn Đăng Ký:</label>
+                <input type="date" class="form-control" id="hanDK" name="hanDK">
+            </div>
+
+            <div class="form-group">
+                <label for="soLuongDK">Số Lượng Đăng Ký:</label>
+                <input type="number" class="form-control" id="soLuongDK" name="soLuongDK">
+            </div>
+
+            <div class="form-group">
+                <label for="tgToChuc">Thời Gian Tổ Chức:</label>
+                <input type="datetime-local" class="form-control" id="tgToChuc" name="tgToChuc">
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="submitData()">Submit</button>
+        </form> -->
+        <form id="userForm">
+            <div class="form-group">
+                <label for="tenHB">Tên Học Bổng:</label>
+                <input type="text" class="form-control" id="tenHB" name="tenHB" required>
+            </div>
+
+            <div class="form-group">
+                <label for="donVi">Đơn Vị:</label>
+                <input type="text" class="form-control" id="donVi" name="donVi" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dieuKien">Điều Kiện:</label>
+                <textarea class="form-control" id="dieuKien" name="dieuKien" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="soTien">Số Tiền:</label>
+                <input type="number" class="form-control" id="soTien" name="soTien" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cachThamGia">Cách Tham Gia:</label>
+                <textarea type="text" class="form-control" id="cachThamGia" name="cachThamGia" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="hanDK">Hạn Đăng Ký:</label>
+                <input type="date" class="form-control" id="hanDK" name="hanDK" required>
+            </div>
+
+            <div class="form-group">
+                <label for="soLuongDK">Số Lượng Đăng Ký:</label>
+                <input type="number" class="form-control" id="soLuongDK" name="soLuongDK" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tgToChuc">Thời Gian Tổ Chức:</label>
+                <input type="datetime-local" class="form-control" id="tgToChuc" name="tgToChuc" required>
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="submitData()">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function submitData() {
+            const formData = {
+                tenHB: document.getElementById('tenHB').value,
+                donVi: document.getElementById('donVi').value,
+                dieuKien: document.getElementById('dieuKien').value,
+                soTien: parseFloat(document.getElementById('soTien').value),
+                cachThamGia: document.getElementById('cachThamGia').value,
+                hanDK: document.getElementById('hanDK').value,
+                soLuongDK: parseInt(document.getElementById('soLuongDK').value),
+                tgToChuc: document.getElementById('tgToChuc').value,
+            };
+
+            axios.post('http://localhost:2209/api/v1/createNewHB', formData)
+                .then(response => {
+                    console.log('Dữ liệu đã được gửi thành công!', response);
+                    // Xử lý thêm logic ở đây nếu cần
+                    alert("Thêm học bổng thành công!")
+                    window.location.href = "trangchu.html";
+                })
+                .catch(error => {
+                    console.error('Lỗi khi gửi dữ liệu:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>

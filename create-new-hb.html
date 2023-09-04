@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thêm mới học bổng</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <div class="w3-card-4">
+        <div class="w3-container w3-blue">
+            <h1 class="header_"><b>Thêm Mới Học Bổng</b></h1>
+        </div>
+        <form class="w3-container" id="scholarship-form" method="POST">
+            <p>
+                <label class="w3-text-blue-grey"><b>Tên Học Bổng</b></label>
+                <input class="w3-input w3-border w3-round-large" name="tenHB" type="text">
+            </p>
+            <p>
+                <label class="w3-text-blue-grey"><b>Đơn Vị</b></label>
+                <input class="w3-input w3-border w3-white w3-round-large" name="donVi" type="text">
+            </p>
+            <p>
+                <label class="w3-text-blue-grey"><b>Điều Kiện</b></label>
+                <input class="w3-input w3-border w3-white w3-round-large" name="dieuKien" type="text">
+            </p>
+            <p>
+                <label class="w3-text-blue-grey"><b>Số Tiền</b></label>
+                <input class="w3-input w3-border w3-white w3-round-large" name="soTien" type="text">
+            </p>
+            <p>
+                <label class="w3-text-blue-grey"><b>Cách Tham Gia</b></label>
+                <input class="w3-input w3-border w3-white w3-round-large" name="cachThamGia" type="text">
+            </p>
+            <p>
+                <label class="w3-text-blue-grey"><b>Hạn Đăng Ký</b></label>
+                <input class="w3-input w3-border w3-white w3-round-large" name="hanDK" type="text">
+            </p>
+            <p>
+                <label class="w3-text-blue-grey"><b>Số Lượng Đăng Ký</b></label>
+                <input class="w3-input w3-border w3-white w3-round-large" name="soLuongDK" type="number">
+            </p>
+            <p>
+                <label class="w3-text-blue-grey"><b>Thời Gian Tổ Chức</b></label>
+                <input class="w3-input w3-border w3-white w3-round-large" name="tgToChuc" type="text">
+            </p>
+            <p>
+                <button class="w3-btn w3-blue-grey" type="submit" class="btn_submit">Submit</button>
+            </p>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function submitData() {
+            const formData = {
+                tenHB: document.getElementById('tenHB').value,
+                donVi: document.getElementById('donVi').value,
+                dieuKien: document.getElementById('dieuKien').value,
+                soTien: parseFloat(document.getElementById('soTien').value),
+                cachThamGia: document.getElementById('cachThamGia').value,
+                hanDK: document.getElementById('hanDK').value,
+                soLuongDK: parseInt(document.getElementById('soLuongDK').value),
+                tgToChuc: document.getElementById('tgToChuc').value,
+            };
+
+            axios.post('http://localhost:2209/api/v1/createNewHB', formData)
+                .then(response => {
+                    console.log('Dữ liệu đã được gửi thành công!', response);
+                    // Xử lý thêm logic ở đây nếu cần
+                })
+                .catch(error => {
+                    console.error('Lỗi khi gửi dữ liệu:', error);
+                });
+        }
+    </script>
+
+</body>
+
+</html>

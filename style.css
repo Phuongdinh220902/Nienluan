@@ -1,0 +1,61 @@
+.header_ {
+    text-align: center;
+}
+
+
+#loginForm {
+    max-width: 330px;
+    margin: 10px auto;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .create-new-hb {
+    padding: 5px 10px;
+    background-color: #129cd3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+} */
+
+#add-button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 25px;
+}
+
+#create-new-hb {
+    padding: 15px 25px;
+    font-size: 16px;
+}
+
+/* Tùy chỉnh màu nền tiêu đề */
+.table thead {
+    background-color: rgb(113, 168, 231);
+    color: white;
+}
+
+/* Tùy chỉnh màu nền mỗi hàng xen kẽ */
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+/* Tùy chỉnh màu nền khi hover chuột vào hàng */
+.table tbody tr:hover {
+    background-color: #ccc;
+}
+
+.table-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 25px 25px;
+
+}

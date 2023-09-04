@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chi tiết học bổng</title>
+</head>
+
+<body>
+    <h1>Chi tiết học bổng</h1>
+    <div id="infoDetail"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Lấy maHB từ localStorage
+        var selectedMaHB = localStorage.getItem("selectedMaHB");
+
+        // Gửi yêu cầu lấy thông tin chi tiết về học bổng dựa trên maHB
+        axios.post("http://localhost:2209/api/v1/tthb", { maHB: selectedMaHB })
+            .then(response => {
+                var info = response.data.info;
+                var infoDetail = document.getElementById("infoDetail");
+
+                var infoDiv = document.createElement("div");
+                infoDiv.innerHTML = `
+                    <p><strong>Mã học bổng:</strong> ${info.maHB}</p>
+                    <p><strong>Tên học bổng:</strong> ${info.tenHB}</p>
+                    <p><strong>Đơn vị:</strong> ${info.donVi}</p>
+                    <p><strong>Điều kiện:</strong> ${info.dieuKien}</p>
+                    <p><strong>Số tiền:</strong> ${info.soTien}</p>
+                    <p><strong>Cách tham gia:</strong> ${info.cachThamGia}</p>
+                    <p><strong>Hạn đăng ký:</strong> ${info.hanDK}</p>
+                    <p><strong>Số lượng:</strong> ${info.soLuongDK}</p>
+                    <p><strong>Thời gian tổ chức:</strong> ${info.tgToChuc}</p>
+                `;
+                infoDetail.appendChild(infoDiv);
+            })
+            .catch(error => {
+                console.error("Lỗi khi lấy thông tin chi tiết học bổng:", error);
+            });
+    </script>
+</body>
+
+</html>
