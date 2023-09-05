@@ -113,14 +113,13 @@
             window.location.href = "kqtk.html";
         });
 
+        const postData = {
+            tenHB: localStorage.getItem("TK")
+        };
 
-
-        const infoTableBody = document.getElementById('infoTableBody');
-
-        axios.get("http://localhost:2209/api/v1/trangchu")
+        axios.post("http://localhost:2209/api/v1/filtertenHB", postData)
             .then(response => {
                 var thongtin = response.data.thongtin;
-                // console.log(response.data.thongtin)
 
                 thongtin.forEach(info => {
                     var row = document.createElement("tr");
@@ -133,17 +132,15 @@
                     donViCell.textContent = info.donVi;
                     row.appendChild(donViCell);
 
-
                     var hanDKCell = document.createElement("td");
-                    hanDKCell.textContent = new Date(info.hanDK).toLocaleDateString(); // Sử dụng toLocaleDateString để hiển thị ngày/tháng/năm
+                    hanDKCell.textContent = new Date(info.hanDK).toLocaleDateString();
                     row.appendChild(hanDKCell);
-
 
                     var detailCell = document.createElement("td");
                     var detailButton = document.createElement("button");
                     detailButton.textContent = "Chi tiết";
                     detailButton.addEventListener("click", function () {
-                        // Lưu maHB vào localStorage
+                        // Lưu maHB vào localStorage 
                         localStorage.setItem("selectedMaHB", info.maHB);
                         window.location.href = "tthb.html";
                     });
@@ -161,7 +158,6 @@
             .then(response => {
                 const tkData = response.data.tk2;
 
-                // Populate the dropdown options
                 tkData.forEach(tk => {
                     const option = document.createElement("option");
                     // option.value = tk.id; // You can set the value to a unique identifier
