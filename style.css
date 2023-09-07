@@ -1,5 +1,6 @@
 .header_ {
     text-align: center;
+    margin: 20px;
 }
 
 
@@ -29,12 +30,12 @@
 #add-button-container {
     display: flex;
     justify-content: flex-end;
-    padding: 25px;
+    padding: 5px 25px;
 }
 
 #create-new-hb {
-    padding: 15px 25px;
-    font-size: 16px;
+    padding: 15px 20px;
+    font-size: 18px;
 }
 
 /* Tùy chỉnh màu nền tiêu đề */
@@ -57,5 +58,16 @@
     display: flex;
     justify-content: flex-end;
     padding: 25px 25px;
+}
 
+#dropdown-container {
+    display: flex;
+    align-items: center;
+    margin: 25px;
+}
+
+.filter-button-container {
+    display: flex;
+    justify-content: right;
+    margin: 10px;
 }
