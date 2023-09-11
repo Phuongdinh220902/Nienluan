@@ -1,6 +1,7 @@
 .header_ {
     text-align: center;
-    margin: 20px;
+    margin: 30px;
+    font-size: 50px;
 }
 
 
@@ -70,4 +71,19 @@
     display: flex;
     justify-content: right;
     margin: 10px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px 35px;
+}
+
+.btn-group button {
+    margin: 0 200px;
+}
+
+.table-container {
+    display: none;
 }

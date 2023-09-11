@@ -13,18 +13,19 @@
     <h1 class="header_"><b>DANH SÁCH HỌC BỔNG</b></h1>
     <div id="add-button-container">
         <button type="button" id="create-new-hb">Thêm</button>
+        <button onclick="show('tab1')" type="button" id="con-han">Còn hạn</button>
+        <button onclick="show('tab2')" type="button" id="het-han">Hết hạn</button>
     </div>
 
 
     <div id="dropdown-container">
         <label style="margin-top: 5px; margin-right: 10px;" for="tkDropdown">Chọn Học Bổng:</label>
         <select id="tkDropdown">
-            <!-- Dropdown options will be added here -->
         </select>
         <button class="filter-button-container" type=" button" id="filter">Tìm</button>
     </div>
 
-    <div class="table-container">
+    <div class="table-container" id="tab1">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -38,6 +39,19 @@
         </table>
     </div>
 
+    <div class="table-container" id="tab2">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Tên Học Bổng</th>
+                    <th scope="col">Đơn Vị</th>
+                    <th scope="col">Hạn Đăng Ký</th>
+                    <th scope="col"> </th>
+                </tr>
+            </thead>
+            <tbody id="infoTableBody"></tbody>
+        </table>
+    </div>
 
     <ul id="infoList"></ul>
     <style>
@@ -95,6 +109,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
         const createNewHbButton = document.getElementById('create-new-hb');
         const FilterButton = document.getElementById('filter');
@@ -111,9 +126,11 @@
             window.location.href = "kqtk.html";
         });
 
-
-
         const infoTableBody = document.getElementById('infoTableBody');
+
+        function show(tabid) {
+            document.getElementById(tabid).style.display = 'block';
+        }
 
         axios.get("http://localhost:2209/api/v1/trangchu")
             .then(response => {
@@ -122,6 +139,7 @@
 
                 thongtin.forEach(info => {
                     var row = document.createElement("tr");
+                    var formattedHanDK = moment(info.hanDK).format("DD-MM-YYYY");
 
                     var tenHBCell = document.createElement("td");
                     tenHBCell.textContent = info.tenHB;
@@ -133,7 +151,7 @@
 
 
                     var hanDKCell = document.createElement("td");
-                    hanDKCell.textContent = new Date(info.hanDK).toLocaleDateString(); // Sử dụng toLocaleDateString để hiển thị ngày/tháng/năm
+                    hanDKCell.textContent = formattedHanDK;
                     row.appendChild(hanDKCell);
 
 
@@ -162,7 +180,6 @@
                 // Populate the dropdown options
                 tkData.forEach(tk => {
                     const option = document.createElement("option");
-                    // option.value = tk.id; // You can set the value to a unique identifier
                     option.textContent = tk.tenHB; // Set the displayed text
                     tkDropdown.appendChild(option);
                     console.log(tk)

@@ -2,93 +2,53 @@
 <html>
 
 <head>
-    <title>Chỉnh Sửa Thông Tin</title>
+    <title>Chỉnh sửa học bổng</title>
 </head>
 
 <body>
-    <h1>Chỉnh Sửa Thông Tin</h1>
-    <div id="infoDetail">
-        <p><strong>Mã học bổng:</strong> <span id="maHocBong"></span></p>
-        <p><strong>Tên học bổng:</strong> <span id="tenHocBong"></span></p>
-        <p><strong>Đơn Vị:</strong> <span id="donVi"></span></p>
-        <p><strong>Điều Kiện:</strong> <span id="dieukien"></span></p>
-        <p><strong>Số Tiền:</strong> <span id="sotien"></span></p>
-        <p><strong>Cách tham gia:</strong> <span id="cachthamgia"></span></p>
-        <p><strong>Hạn đăng ký:</strong>
-            <date id="handk"></date>
-        </p>
-        <p><strong>Số lượng đăng ký:</strong> <span id="sldk"></span></p>
-        <p><strong>Thời gian tổ chức:</strong> <span id="tgtochuc"></span></p>
-    </div>
-    <button onclick="editInfo()">Chỉnh sửa</button>
+    <h1>Chỉnh Sửa Học Bổng</h1>
+    <form id="infoForm">
+        <div>
+            <label for="maHB">Mã học bổng:</label>
+            <input type="text" id="maHB" name="maHB" readonly>
+        </div>
+        <div>
+            <label for="tenHB">Tên học bổng:</label>
+            <input type="text" id="tenHB" name="tenHB">
+        </div>
+        <div>
+            <label for="donVi">Đơn vị:</label>
+            <input type="text" id="donVi" name="donVi">
+        </div>
+        <div>
+            <label for="dieuKien">Điều kiện:</label>
+            <textarea id="dieuKien" name="dieuKien"></textarea>
+        </div>
+        <div>
+            <label for="soTien">Số tiền:</label>
+            <input type="number" id="soTien" name="soTien">
+        </div>
+        <div>
+            <label for="cachThamGia">Cách tham gia:</label>
+            <textarea id="cachThamGia" name="cachThamGia"></textarea>
+        </div>
+        <div>
+            <label for="hanDK">Hạn đăng ký:</label>
+            <input type="date" id="hanDK" name="hanDK">
+        </div>
+        <div>
+            <label for="soLuongDK">Số lượng:</label>
+            <input type="number" id="soLuongDK" name="soLuongDK">
+        </div>
+        <div>
+            <label for="tgToChuc">Thời gian tổ chức:</label>
+            <input type="text" id="tgToChuc" name="tgToChuc">
+        </div>
+        <button type="submit">Lưu</button>
+    </form>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        var isEditing = false; // Biến để kiểm tra xem bạn đang trong chế độ chỉnh sửa hay không
-        var maHocBongInput, tenHocBongInput, donViInput, dieukienInput, sotienInput, cachthamgiaInput,
-            handkInput, sldkInput, tgtochucInput; // Biến để lưu trữ các trường dữ liệu chỉnh sửa
-
-
-        function editInfo() {
-            isEditing = !isEditing; // Chuyển đổi trạng thái chỉnh sửa
-
-            if (isEditing) {
-                // Hiển thị các trường dữ liệu có thể chỉnh sửa
-
-                tenHocBongInput = document.createElement("input");
-                tenHocBongInput.value = document.getElementById("tenHocBong").textContent;
-                document.getElementById("tenHocBong").innerHTML = "";
-                document.getElementById("tenHocBong").appendChild(tenHocBongInput);
-
-                donViInput = document.createElement("input");
-                donViInput.value = document.getElementById("donVi").textContent;
-                document.getElementById("donVi").innerHTML = "";
-                document.getElementById("donVi").appendChild(donViInput);
-
-                dieukienInput = document.createElement("input");
-                dieukienInput.value = document.getElementById("dieukien").textContent;
-                document.getElementById("dieukien").innerHTML = "";
-                document.getElementById("dieukien").appendChild(dieukienInput);
-
-                sotienInput = document.createElement("input");
-                sotienInput.value = document.getElementById("sotien").textContent;
-                document.getElementById("sotien").innerHTML = "";
-                document.getElementById("sotien").appendChild(sotienInput);
-
-                cachthamgiaInput = document.createElement("input");
-                cachthamgiaInput.value = document.getElementById("cachthamgia").textContent;
-                document.getElementById("cachthamgia").innerHTML = "";
-                document.getElementById("cachthamgia").appendChild(cachthamgiaInput);
-
-                handkInput = document.createElement("input");
-                handkInput.value = document.getElementById("handk").textContent;
-                document.getElementById("handk").innerHTML = "";
-                document.getElementById("handk").appendChild(handkInput);
-
-                sldkInput = document.createElement("input");
-                sldkInput.value = document.getElementById("sldk").textContent;
-                document.getElementById("sldk").innerHTML = "";
-                document.getElementById("sldk").appendChild(sldkInput);
-
-                tgtochucInput = document.createElement("input");
-                tgtochucInput.value = document.getElementById("tgtochuc").textContent;
-                document.getElementById("tgtochuc").innerHTML = "";
-                document.getElementById("tgtochuc").appendChild(tgtochucInput);
-
-                // Thêm các trường dữ liệu khác ở đây và gán giá trị từ biến info
-            } else {
-                // Lưu thông tin đã chỉnh sửa và cập nhật trên trang
-                document.getElementById("tenHocBong").textContent = tenHocBongInput.value;
-                document.getElementById("donVi").textContent = donViInput.value;
-                document.getElementById("dieukien").textContent = dieukienInput.value;
-                document.getElementById("sotien").textContent = sotienInput.value;
-                document.getElementById("cachthamgia").textContent = cachthamgiaInput.value;
-                document.getElementById("handk").textContent = handkInput.value;
-                document.getElementById("sldk").textContent = sldkInput.value;
-                document.getElementById("tgtochuc").textContent = tgtochucInput.value;
-            }
-        }
-
         // Lấy maHB từ localStorage
         var selectedMaHB = localStorage.getItem("selectedMaHB");
 
@@ -96,20 +56,64 @@
         axios.post("http://localhost:2209/api/v1/tthb", { maHB: selectedMaHB })
             .then(response => {
                 var info = response.data.info;
-                document.getElementById("maHocBong").textContent = info.maHB;
-                document.getElementById("tenHocBong").textContent = info.tenHB;
-                document.getElementById("donVi").textContent = info.donVi;
-                document.getElementById("dieukien").textContent = info.dieuKien;
-                document.getElementById("sotien").textContent = info.soTien;
-                document.getElementById("cachthamgia").textContent = info.cachThamGia;
-                document.getElementById("handk").textContent = info.hanDK;
-                document.getElementById("sldk").textContent = info.soLuongDK;
-                document.getElementById("tgtochuc").textContent = info.tgToChuc;
-                // Thêm các trường dữ liệu khác ở đây
+
+                // Đổ dữ liệu vào các trường input/textarea
+                document.getElementById("maHB").value = info.maHB;
+                document.getElementById("tenHB").value = info.tenHB;
+                document.getElementById("donVi").value = info.donVi;
+                document.getElementById("dieuKien").value = info.dieuKien;
+                document.getElementById("soTien").value = info.soTien;
+                document.getElementById("cachThamGia").value = info.cachThamGia;
+                document.getElementById("hanDK").value = info.hanDK;
+                document.getElementById("soLuongDK").value = info.soLuongDK;
+                document.getElementById("tgToChuc").value = info.tgToChuc;
             })
             .catch(error => {
                 console.error("Lỗi khi lấy thông tin chi tiết học bổng:", error);
             });
+
+
+        // Xử lý sự kiện nút Lưu
+        document.getElementById("infoForm").addEventListener("submit", function (event) {
+
+            event.preventDefault();
+            var confirmation = confirm("Bạn có muốn lưu thông tin đã chỉnh sửa không?");
+            if (confirmation) {
+                var updatedInfo = {
+                    maHB: document.getElementById("maHB").value,
+                    tenHB: document.getElementById("tenHB").value,
+                    donVi: document.getElementById("donVi").value,
+                    dieuKien: document.getElementById("dieuKien").value,
+                    soTien: document.getElementById("soTien").value,
+                    cachThamGia: document.getElementById("cachThamGia").value,
+                    hanDK: document.getElementById("hanDK").value,
+                    soLuongDK: document.getElementById("soLuongDK").value,
+                    tgToChuc: document.getElementById("tgToChuc").value
+                };
+
+                // Gửi yêu cầu cập nhật thông tin học bổng
+                axios.post("http://localhost:2209/api/v1/updateHB", updatedInfo)
+                    .then(response => {
+                        // Xử lý khi cập nhật thành công (có thể thông báo hoặc chuyển hướng trang)
+                        console.log("Thông tin học bổng đã được cập nhật:", response.data);
+                        if (response.data["message"] === "ok") {
+
+                            window.location.href = "tthb.html";
+                        } else {
+                            alert("Cap nhat tb")
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Lỗi khi cập nhật thông tin học bổng:", error);
+                    });
+            } else {
+                // window.location.href = "tthb.html";
+                console.log("hshs")
+            }
+
+            // Thu thập dữ liệu từ các trường input/textarea
+
+        });
     </script>
 </body>
 

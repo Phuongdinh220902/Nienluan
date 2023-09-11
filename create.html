@@ -6,54 +6,16 @@
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Liên kết đến jQuery UI từ CDN -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
     <div class="container mt-5">
         <h1>Thêm Mới Học Bổng</h1>
-        <!-- <form id="userForm">
-            <div class="form-group">
-                <label for="tenHB">Tên Học Bổng:</label>
-                <input type="text" class="form-control" id="tenHB" name="tenHB">
-            </div>
-
-            <div class="form-group">
-                <label for="donVi">Đơn Vị:</label>
-                <input type="text" class="form-control" id="donVi" name="donVi">
-            </div>
-
-            <div class="form-group">
-                <label for="dieuKien">Điều Kiện:</label>
-                <input type="text" class="form-control" id="dieuKien" name="dieuKien">
-            </div>
-
-            <div class="form-group">
-                <label for="soTien">Số Tiền:</label>
-                <input type="text" class="form-control" id="soTien" name="soTien">
-            </div>
-
-            <div class="form-group">
-                <label for="cachThamGia">Cách Tham Gia:</label>
-                <input type="text" class="form-control" id="cachThamGia" name="cachThamGia">
-            </div>
-
-            <div class="form-group">
-                <label for="hanDK">Hạn Đăng Ký:</label>
-                <input type="date" class="form-control" id="hanDK" name="hanDK">
-            </div>
-
-            <div class="form-group">
-                <label for="soLuongDK">Số Lượng Đăng Ký:</label>
-                <input type="number" class="form-control" id="soLuongDK" name="soLuongDK">
-            </div>
-
-            <div class="form-group">
-                <label for="tgToChuc">Thời Gian Tổ Chức:</label>
-                <input type="datetime-local" class="form-control" id="tgToChuc" name="tgToChuc">
-            </div>
-
-            <button type="button" class="btn btn-primary" onclick="submitData()">Submit</button>
-        </form> -->
         <form id="userForm">
             <div class="form-group">
                 <label for="tenHB">Tên Học Bổng:</label>
@@ -72,7 +34,7 @@
 
             <div class="form-group">
                 <label for="soTien">Số Tiền:</label>
-                <input type="number" class="form-control" id="soTien" name="soTien" required>
+                <input type="text" class="form-control" id="soTien" name="soTien" required>
             </div>
 
             <div class="form-group">
@@ -82,7 +44,7 @@
 
             <div class="form-group">
                 <label for="hanDK">Hạn Đăng Ký:</label>
-                <input type="date" class="form-control" id="hanDK" name="hanDK" required>
+                <input type="text" class="form-control" id="hanDK" name="hanDK" required>
             </div>
 
             <div class="form-group">
@@ -92,7 +54,7 @@
 
             <div class="form-group">
                 <label for="tgToChuc">Thời Gian Tổ Chức:</label>
-                <input type="datetime-local" class="form-control" id="tgToChuc" name="tgToChuc" required>
+                <textarea type="text" class="form-control" id="tgToChuc" name="tgToChuc" required></textarea>
             </div>
 
             <div class="form-group">
@@ -125,6 +87,13 @@
                     console.error('Lỗi khi gửi dữ liệu:', error);
                 });
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#hanDK").datepicker({
+                dateFormat: "dd-mm-yy" // Định dạng ngày thành "dd-mm-yyyy"
+            });
+        });
     </script>
 </body>
 
