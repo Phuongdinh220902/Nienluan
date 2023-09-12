@@ -39,8 +39,14 @@
                                 var infoDetail = document.getElementById("infoDetail");
 
                                 var formattedHanDK = moment(info.hanDK).format("DD-MM-YYYY");
+
                                 var DieuKien = info.dieuKien
                                 DieuKien = DieuKien.replace(/\n/g, '<br>');
+                                var Cachthamgia = info.cachThamGia
+                                Cachthamgia = Cachthamgia.replace(/\n/g, '<br>');
+                                var TGtochuc = info.tgToChuc
+                                TGtochuc = TGtochuc.replace(/\n/g, '<br>');
+
                                 var infoDiv = document.createElement("div");
 
                                 infoDiv.innerHTML = `
@@ -48,12 +54,11 @@
                                     <p><strong>Tên học bổng:</strong> ${info.tenHB}</p>
                                     <p><strong>Đơn vị:</strong> ${info.donVi}</p>
                                     <p><strong>Điều kiện:</strong></br>${DieuKien}</p>
-
                                     <p><strong>Số tiền:</strong> ${info.soTien}</p>
-                                    <p><strong>Cách tham gia:</strong> ${info.cachThamGia}</p>
+                                    <p><strong>Cách tham gia:</strong></br>${Cachthamgia}</p>
                                     <p><strong>Hạn đăng ký:</strong> ${formattedHanDK}</p>
                                     <p><strong>Số lượng:</strong> ${info.soLuongDK}</p>
-                                    <p><strong>Thời gian tổ chức:</strong> ${info.tgToChuc}</p>
+                                    <p><strong>Thời gian tổ chức:</strong> </br>${TGtochuc}</p>
                                 `;
                                 infoDetail.appendChild(infoDiv);
                             })
@@ -62,24 +67,28 @@
                             });
                     </script>
                 </div>
+
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary" id="update-hb">Chỉnh Sửa</button>
-                    <button type="button" class="btn btn-danger" id="delete-hb">Xóa</button>
+                    <button type="button" class="btn-close" data-toggle="modal" data-target="#myModal"
+                        id="delete-hb">Xóa</button>
+                    <button type="button" class="btn-close">Hủy</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="btn-group">
-        <button type="button" class="btn btn-primary" id="update-hb">Chỉnh Sửa</button>
-        <button type="button" class="btn btn-danger" id="delete-hb">Xóa</button>
-    </div> -->
 
     <script>
         const updateHbButton = document.getElementById('update-hb');
 
         updateHbButton.addEventListener('click', function () {
-            window.location.href = "update-hb.html";
+            window.location.href = "updat.html";
         });
+
+        document.querySelector(".btn-close").addEventListener("click", function () {
+            window.location.href = "trangchu.html";
+        });
+
         const deleteButton = document.getElementById('delete-hb');
 
         deleteButton.addEventListener('click', function () {

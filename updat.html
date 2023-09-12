@@ -2,81 +2,69 @@
 <html>
 
 <head>
+    <title>Chỉnh Sửa Học Bổng</title>
     <meta charset="UTF-8">
-    <title>Chỉnh sửa học bổng</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Liên kết đến jQuery UI từ CDN -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!-- <style>
-        .infoForm {
-            width: 500px;
-            margin: 0 auto;
-        }
-
-        .infoForm .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .infoForm input,
-        .infoForm textarea {
-            width: 100%;
-            padding: .5rem;
-            border-radius: .25rem;
-        }
-
-        .infoForm button {
-            background-color: #007bff;
-            color: white;
-            padding: .5rem 1rem;
-            border-radius: .25rem;
-            cursor: pointer;
-        }
-    </style> -->
 </head>
 
 <body>
-    <h1>Chỉnh Sửa Học Bổng</h1>
-    <form id="infoForm">
-        <div>
-            <label for="tenHB">Tên học bổng:</label>
-            <input type="text" id="tenHB" name="tenHB">
-        </div>
-        <div>
-            <label for="donVi">Đơn vị:</label>
-            <input type="text" id="donVi" name="donVi">
-        </div>
-        <div>
-            <label for="dieuKien">Điều kiện:</label>
-            <textarea id="dieuKien" name="dieuKien"></textarea>
-        </div>
-        <div>
-            <label for="soTien">Số tiền:</label>
-            <input type="number" id="soTien" name="soTien">
-        </div>
-        <div>
-            <label for="cachThamGia">Cách tham gia:</label>
-            <textarea id="cachThamGia" name="cachThamGia"></textarea>
-        </div>
-        <div>
-            <label for="hanDK">Hạn đăng ký:</label>
-            <input type="text" id="hanDK" name="hanDK">
-        </div>
-        <div>
-            <label for="soLuongDK">Số lượng:</label>
-            <input type="number" id="soLuongDK" name="soLuongDK">
-        </div>
-        <div>
-            <label for="tgToChuc">Thời gian tổ chức:</label>
-            <textarea type="text" id="tgToChuc" name="tgToChuc"></textarea>
-        </div>
-        <button type="submit">Lưu</button>
-    </form>
+    <div class="container mt-5">
+        <h1>Chỉnh Sửa Học Bổng</h1>
+        <form id="userForm">
+            <div class="form-group">
+                <label for="tenHB">Tên Học Bổng:</label>
+                <input type="text" class="form-control" id="tenHB" name="tenHB" required>
+            </div>
+
+            <div class="form-group">
+                <label for="donVi">Đơn Vị:</label>
+                <input type="text" class="form-control" id="donVi" name="donVi" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dieuKien">Điều Kiện:</label>
+                <textarea class="form-control" id="dieuKien" name="dieuKien" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="soTien">Số Tiền:</label>
+                <input type="text" class="form-control" id="soTien" name="soTien" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cachThamGia">Cách Tham Gia:</label>
+                <textarea type="text" class="form-control" id="cachThamGia" name="cachThamGia" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="hanDK">Hạn Đăng Ký:</label>
+                <input type="text" class="form-control" id="hanDK" name="hanDK" required>
+            </div>
+
+            <div class="form-group">
+                <label for="soLuongDK">Số Lượng Đăng Ký:</label>
+                <input type="number" class="form-control" id="soLuongDK" name="soLuongDK" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tgToChuc">Thời Gian Tổ Chức:</label>
+                <textarea type="text" class="form-control" id="tgToChuc" name="tgToChuc" required></textarea>
+            </div>
+            <div class="btn-group2">
+                <button type="submit" class="btn-save">Lưu</button>
+                <button type="button" class="btn-close">Hủy</button>
+            </div>
+
+
+        </form>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
@@ -102,8 +90,14 @@
                 console.error("Lỗi khi lấy thông tin chi tiết học bổng:", error);
             });
 
+        // Sử dụng JavaScript để thêm sự kiện cho nút "Hủy"
+        document.querySelector(".btn-close").addEventListener("click", function () {
+            window.location.href = "detail.html";
+        });
+
+
         // Xử lý sự kiện nút Lưu
-        document.getElementById("infoForm").addEventListener("submit", function (event) {
+        document.getElementById("userForm").addEventListener("submit", function (event) {
 
             event.preventDefault();
             var confirmation = confirm("Bạn có muốn lưu thông tin đã chỉnh sửa không?");
@@ -140,11 +134,16 @@
                 console.log("hshs")
             }
 
-            // Thu thập dữ liệu từ các trường input/textarea
-
         });
     </script>
 
+    <script>
+        $(document).ready(function () {
+            $("#hanDK").datepicker({
+                dateFormat: "dd-mm-yy" // Định dạng ngày thành "dd-mm-yyyy"
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -17,7 +17,6 @@
         <button onclick="show('tab2')" type="button" id="het-han">Hết hạn</button>
     </div>
 
-
     <div id="dropdown-container">
         <label style="margin-top: 5px; margin-right: 10px;" for="tkDropdown">Chọn Học Bổng:</label>
         <select id="tkDropdown">
@@ -26,20 +25,6 @@
     </div>
 
     <div class="table-container" id="tab1">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Tên Học Bổng</th>
-                    <th scope="col">Đơn Vị</th>
-                    <th scope="col">Hạn Đăng Ký</th>
-                    <th scope="col"> </th>
-                </tr>
-            </thead>
-            <tbody id="infoTableBody"></tbody>
-        </table>
-    </div>
-
-    <div class="table-container" id="tab2">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -128,14 +113,104 @@
 
         const infoTableBody = document.getElementById('infoTableBody');
 
-        function show(tabid) {
-            document.getElementById(tabid).style.display = 'block';
-        }
 
+        function show(tabid) {
+            if (tabid == 'tab2') {
+                axios.get("http://localhost:2209/api/v1/trangchu2")
+                    .then(response => {
+                        var thongtin = response.data.thongtin;
+                        while (infoTableBody.firstChild) {
+                            infoTableBody.removeChild(infoTableBody.firstChild);
+                        }
+
+                        thongtin.forEach(info => {
+                            var row = document.createElement("tr");
+                            var formattedHanDK = moment(info.hanDK).format("DD-MM-YYYY");
+
+                            var tenHBCell = document.createElement("td");
+                            tenHBCell.textContent = info.tenHB;
+                            row.appendChild(tenHBCell);
+
+                            var donViCell = document.createElement("td");
+                            donViCell.textContent = info.donVi;
+                            row.appendChild(donViCell);
+
+
+                            var hanDKCell = document.createElement("td");
+                            hanDKCell.textContent = formattedHanDK;
+                            row.appendChild(hanDKCell);
+
+
+                            var detailCell = document.createElement("td");
+                            var detailButton = document.createElement("button");
+                            detailButton.textContent = "Chi tiết";
+                            detailButton.addEventListener("click", function () {
+                                // Lưu maHB vào localStorage
+                                localStorage.setItem("selectedMaHB", info.maHB);
+                                window.location.href = "detail.html";
+                            });
+                            detailCell.appendChild(detailButton);
+                            row.appendChild(detailCell);
+
+                            infoTableBody.appendChild(row);
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Lỗi khi lấy thông tin học bổng:", error);
+                    });
+            }
+            else {
+                axios.get("http://localhost:2209/api/v1/trangchu1")
+                    .then(response => {
+                        var thongtin = response.data.thongtin;
+                        // console.log(response.data.thongtin)
+                        while (infoTableBody.firstChild) {
+                            infoTableBody.removeChild(infoTableBody.firstChild);
+                        }
+
+                        thongtin.forEach(info => {
+                            var row = document.createElement("tr");
+                            var formattedHanDK = moment(info.hanDK).format("DD-MM-YYYY");
+
+                            var tenHBCell = document.createElement("td");
+                            tenHBCell.textContent = info.tenHB;
+                            row.appendChild(tenHBCell);
+
+                            var donViCell = document.createElement("td");
+                            donViCell.textContent = info.donVi;
+                            row.appendChild(donViCell);
+
+
+                            var hanDKCell = document.createElement("td");
+                            hanDKCell.textContent = formattedHanDK;
+                            row.appendChild(hanDKCell);
+
+
+                            var detailCell = document.createElement("td");
+                            var detailButton = document.createElement("button");
+                            detailButton.textContent = "Chi tiết";
+                            detailButton.addEventListener("click", function () {
+                                // Lưu maHB vào localStorage
+                                localStorage.setItem("selectedMaHB", info.maHB);
+                                window.location.href = "detail.html";
+                            });
+                            detailCell.appendChild(detailButton);
+                            row.appendChild(detailCell);
+
+                            infoTableBody.appendChild(row);
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Lỗi khi lấy thông tin học bổng:", error);
+                    });
+            }
+        }
         axios.get("http://localhost:2209/api/v1/trangchu")
             .then(response => {
                 var thongtin = response.data.thongtin;
-                // console.log(response.data.thongtin)
+                while (infoTableBody.firstChild) {
+                    infoTableBody.removeChild(infoTableBody.firstChild);
+                }
 
                 thongtin.forEach(info => {
                     var row = document.createElement("tr");
@@ -161,7 +236,7 @@
                     detailButton.addEventListener("click", function () {
                         // Lưu maHB vào localStorage
                         localStorage.setItem("selectedMaHB", info.maHB);
-                        window.location.href = "tthb.html";
+                        window.location.href = "detail.html";
                     });
                     detailCell.appendChild(detailButton);
                     row.appendChild(detailCell);
@@ -176,7 +251,6 @@
         axios.get("http://localhost:2209/api/v1/trangchu")
             .then(response => {
                 const tkData = response.data.tk2;
-
                 // Populate the dropdown options
                 tkData.forEach(tk => {
                     const option = document.createElement("option");
@@ -189,7 +263,6 @@
                 console.error("Lỗi khi lấy thông tin tài khoản:", error);
             });
     </script>
-
 
 </body>
 
