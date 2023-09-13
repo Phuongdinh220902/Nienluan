@@ -27,7 +27,7 @@
     cursor: pointer;
     margin-left: auto;
 } */
-
+/* trang chu */
 #add-button-container {
     display: flex;
     justify-content: flex-end;
@@ -37,6 +37,11 @@
 #create-new-hb {
     padding: 15px 20px;
     font-size: 18px;
+}
+
+#con-han {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 /* Tùy chỉnh màu nền tiêu đề */
@@ -73,19 +78,40 @@
     margin: 10px;
 }
 
-.btn-group {
+/* detail */
+.btn-group-button {
     display: flex;
     justify-content: center;
     margin-top: 20px;
     padding: 20px 35px;
     border-radius: 5px;
+    gap: 25px;
 }
 
 .btn-group button {
     margin: 0 100px;
 }
 
+#delete-hb {
+    /* margin-left: 20px;
+    margin-right: 20px; */
+    padding: 10px 20px;
+}
 
+.btn-huy {
+    background-color: #dc3545;
+    /* Màu nền */
+    color: #fff;
+    /* Màu chữ */
+    padding: 10px 20px;
+    /* Kích thước nút */
+    border: none;
+    /* Loại bỏ đường viền */
+    border-radius: 5px;
+    /* Góc bo tròn */
+    cursor: pointer;
+    /* Hình con trỏ khi di chuột */
+}
 
 .infoForm {
     width: 500px;
@@ -111,11 +137,14 @@
     cursor: pointer;
 }
 
+/* update */
 /* Áp dụng một số kiểu chung cho nhóm nút */
 .btn-group2 {
     display: flex;
-    gap: 10px;
+    justify-content: center;
+    gap: 20px;
     /* Khoảng cách giữa các nút */
+    margin-bottom: 30px;
 }
 
 /* Kiểu cho nút Lưu */
@@ -161,3 +190,7 @@
     background-color: #c82333;
     /* Màu nền khi di chuột qua */
 }
+
+/* .form-control{
+    display: none;
+} */

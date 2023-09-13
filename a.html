@@ -2,16 +2,19 @@
 <html>
 
 <head>
-    <title>Chi tiết học bổng</title>
+    <title>Chi Tiết Học Bổng</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-
     <style>
         body {
             background-color: #f8f9fa;
         }
 
         .container {
+            margin-top: 20px;
+        }
+
+        .btn-group-button {
             margin-top: 20px;
         }
     </style>
@@ -31,22 +34,6 @@
                     <script>
                         // Lấy maHB từ localStorage
                         var selectedMaHB = localStorage.getItem("selectedMaHB");
-
-                        function formatnumber(number) {
-                            format_number = ''
-                            let cnt = 0
-                            for (let i = number.length - 1; i >= 0; i--) {
-                                cnt += 1
-                                if (cnt == 4) {
-                                    format_number = '.' + format_number
-                                    cnt = 1
-                                }
-                                format_number = number[i] + format_number
-
-                            }
-                            return format_number
-
-                        }
 
                         axios.post("http://localhost:2209/api/v1/tthb", { maHB: selectedMaHB })
                             .then(response => {
@@ -69,7 +56,7 @@
                                     <p><strong>Tên học bổng:</strong> ${info.tenHB}</p>
                                     <p><strong>Đơn vị:</strong> ${info.donVi}</p>
                                     <p><strong>Điều kiện:</strong></br>${DieuKien}</p>
-                                    <p><strong>Số tiền:</strong> ${formatnumber(info.soTien)}</p>
+                                    <p><strong>Số tiền:</strong> ${info.soTien}</p>
                                     <p><strong>Cách tham gia:</strong></br>${Cachthamgia}</p>
                                     <p><strong>Hạn đăng ký:</strong> ${formattedHanDK}</p>
                                     <p><strong>Số lượng:</strong> ${info.soLuongDK}</p>
@@ -77,8 +64,6 @@
                                 `;
                                 infoDetail.appendChild(infoDiv);
                             })
-
-
                             .catch(error => {
                                 console.error("Lỗi khi lấy thông tin chi tiết học bổng:", error);
                             });
@@ -88,7 +73,7 @@
                 <div class="btn-group-button">
                     <button type="button" class="btn btn-primary" id="update-hb">Chỉnh Sửa</button>
                     <button type="button" class="btn btn-danger" id="delete-hb">Xóa</button>
-                    <button type="button" class="btn-huy">Hủy</button>
+                    <button type="button" class="btn btn-secondary btn-huy">Hủy</button>
                 </div>
             </div>
         </div>
@@ -104,8 +89,6 @@
         document.querySelector(".btn-huy").addEventListener("click", function () {
             window.location.href = "trangchu.html";
         });
-
-
 
         const deleteButton = document.getElementById('delete-hb');
 

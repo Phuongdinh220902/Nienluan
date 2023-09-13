@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <!-- Liên kết đến jQuery UI từ CDN -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -64,14 +65,17 @@
     </div>
 
     <script>
+
         function submitData() {
+            var hanDKInput = document.getElementById("hanDK").value;
+            var formattedHanDK = moment(hanDKInput, "DD-MM-YYYY").format("YYYY-MM-DD");
             const formData = {
                 tenHB: document.getElementById('tenHB').value,
                 donVi: document.getElementById('donVi').value,
                 dieuKien: document.getElementById('dieuKien').value,
                 soTien: parseFloat(document.getElementById('soTien').value),
                 cachThamGia: document.getElementById('cachThamGia').value,
-                hanDK: document.getElementById('hanDK').value,
+                hanDK: formattedHanDK,
                 soLuongDK: parseInt(document.getElementById('soLuongDK').value),
                 tgToChuc: document.getElementById('tgToChuc').value,
             };
