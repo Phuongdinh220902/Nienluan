@@ -9,13 +9,14 @@
     <style>
         body {
             margin: 0;
-            padding: 10px 25px;
-            background-color: #F2FFFE;
+            /* padding: 10px 25px; */
+            /* background-color: #b9f9fc; */
+            background-color: #a1def5;
         }
 
         /* Thiết lập font chữ và màu nền cho header */
         header {
-            background-color: #F2FFFE;
+            background-color: #a1def5;
             color: #267765;
             padding: 20px 40px;
             display: flex;
@@ -28,7 +29,6 @@
         }
 
         .auth-buttons {
-            /* margin-left: 50px; */
             display: flex;
             gap: 15px;
 
@@ -55,10 +55,17 @@
             margin: 20px auto;
             padding: 20px;
         }
+
+
+        /* Tùy chỉnh màu sắc, padding, và margin cho các phần tử tùy theo nhu cầu của bạn */
     </style>
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <header>
         <div class="logo-ctu">
             <img src="/ctu.png" alt="Ảnh của bạn">
@@ -86,6 +93,59 @@
                 <img src="blackpink.jpg" alt="Ảnh của bạn">
             </div>
         </div>
+        <div
+            style="width: 100%; height:10vw; background-color: white; clip-path: polygon(100% 0,0 100%, 0 0); padding: 0;">
+        </div>
+
+        <div id="api-data">
+            <script>
+                axios.get("http://localhost:2209/api/v1/trangchusv")
+                    .then(response => {
+                        var data = response.data['thongtin'];
+                        // console.log(data)
+
+                        if (data.length > 0) {
+                            var APIdata = document.getElementById("api-data");
+
+                            data.forEach(info => {
+                                console.log(info)
+                                var formattedHanDK = moment(info.hanDK).format("DD-MM-YYYY");
+
+                                var DieuKien = info.dieuKien || 'Không có dữ liệu';
+                                DieuKien = DieuKien.replace(/\n/g, '<br>');
+                                var Cachthamgia = info.cachThamGia || 'Không có dữ liệu';
+                                Cachthamgia = Cachthamgia.replace(/\n/g, '<br>');
+                                var TGtochuc = info.tgToChuc || 'Không có dữ liệu';
+                                TGtochuc = TGtochuc.replace(/\n/g, '<br>');
+
+                                var infoDiv = document.createElement("div");
+                                infoDiv.className = "info-card";
+
+                                infoDiv.innerHTML = `
+                                <p><strong>Tên học bổng:</strong> ${info.tenHB || 'Không có dữ liệu'}</p>
+                                <p><strong>Đơn vị:</strong> ${info.donVi || 'Không có dữ liệu'}</p>
+                                <p><strong>Điều kiện:</strong></br>${DieuKien}</p>
+                                <p><strong>Số tiền:</strong> ${info.soTien || 'Không có dữ liệu'}</p>
+                                <p><strong>Cách tham gia:</strong></br>${Cachthamgia}</p>
+                                <p><strong>Hạn đăng ký:</strong> ${formattedHanDK || 'Không có dữ liệu'}</p>
+                                <p><strong>Số lượng:</strong> ${info.soLuongDK || 'Không có dữ liệu'}</p>
+                                <p><strong>Thời gian tổ chức:</strong> </br>${TGtochuc}</p>
+                                <button type="button" class="btn-dangky">Đăng Ký</button>
+                                
+                            `;
+
+                                APIdata.appendChild(infoDiv);
+                            });
+                        } else {
+                            console.error("Không có dữ liệu học bổng.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Lỗi khi lấy thông tin chi tiết học bổng:", error);
+                    });
+            </script>
+        </div>
+
     </div>
 
 </body>

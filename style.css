@@ -248,11 +248,64 @@
 }
 
 .green-text {
-    color: #0F7771;
+    /* color: rgba(252, 245, 245, 0.87); */
+    color: white;
 }
 
 .image-content img {
     width: 80%;
     height: 70%;
     object-fit: cover;
+}
+
+
+
+/* CSS cho phần hiển thị thông tin học bổng */
+#api-data {
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.info-card {
+    text-align: center;
+    border: 2px solid #97eed1;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #a1def5;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-left: 180px;
+    /* Thêm khoảng cách giữa các khung thông tin */
+    max-width: 800px;
+    min-height: 300px;
+}
+
+.info-card p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.info-card strong {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btn-dangky {
+    background-color: #007bff;
+    /* Màu nền */
+    color: #fff;
+    /* Màu chữ */
+    padding: 10px 20px;
+    /* Kích thước nút */
+    border: none;
+    /* Loại bỏ đường viền */
+    border-radius: 5px;
+    /* Góc bo tròn */
+    cursor: pointer;
+    /* Hình con trỏ khi di chuột */
+}
+
+/* Kiểu khi di chuột qua nút Lưu */
+.btn-dangky:hover {
+    background-color: #0056b3;
 }
