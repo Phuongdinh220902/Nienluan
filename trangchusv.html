@@ -9,16 +9,15 @@
     <style>
         body {
             margin: 0;
-            /* padding: 10px 25px; */
-            /* background-color: #b9f9fc; */
-            background-color: #a1def5;
+            padding: 0;
+
         }
 
         /* Thiết lập font chữ và màu nền cho header */
         header {
-            background-color: #a1def5;
+            background-color: #F2FFFE;
             color: #267765;
-            padding: 20px 40px;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -26,22 +25,23 @@
 
         header h1 {
             margin: 0;
+            padding: 0;
         }
 
         .auth-buttons {
             display: flex;
             gap: 15px;
-
+            margin-right: 45px;
         }
 
         .auth-buttons a {
             background-color: #0F7771;
             text-decoration: none;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: 1px solid #fff;
             border-radius: 5px;
-
+            font-family: 'Inter', "fallback for Inter", sans-serif;
         }
 
         .auth-buttons a:hover {
@@ -51,13 +51,10 @@
 
         /* Thiết lập kiểu dáng cho phần nội dung */
         .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
         }
-
-
-        /* Tùy chỉnh màu sắc, padding, và margin cho các phần tử tùy theo nhu cầu của bạn */
     </style>
 </head>
 
@@ -70,7 +67,7 @@
         <div class="logo-ctu">
             <img src="/ctu.png" alt="Ảnh của bạn">
         </div>
-        <h1 class="tc">Trang Chủ</h1>
+        <h1 class="tc"> Đăng Ký Học Bổng </h1>
 
         <div class="auth-buttons">
             <!-- <button type="button" id="btn-dk">Đăng ký</button>
@@ -83,21 +80,22 @@
     <div class="container">
         <div class="content-wrapper">
             <div class="text-content">
-                <h1>Tìm kiếm
+                <h1>Tìm thấy được
                     <span class="green-text"><br>học bổng<br></span>
-                    phù hợp với bản thân
+                    phù hợp nhất<br>với bản thân</br>
                 </h1>
-                <p>Chúng tôi khiến cho việc tìm kiếm học bổng của bạn dễ dàng hơn</p>
+                <p class="mt">Chúng tôi khiến cho
+                    việc tìm kiếm và đăng ký học bổng của bạn dễ dàng hơn</p>
             </div>
             <div class="image-content">
                 <img src="blackpink.jpg" alt="Ảnh của bạn">
             </div>
         </div>
         <div
-            style="width: 100%; height:10vw; background-color: white; clip-path: polygon(100% 0,0 100%, 0 0); padding: 0;">
+            style="width: 100%; height:8vw; background-color: #F2FFFE; clip-path: polygon(100% 0,0 100%, 0 0); padding: 0;">
         </div>
 
-        <div id="api-data">
+        <!-- <div id="api-data">
             <script>
                 axios.get("http://localhost:2209/api/v1/trangchusv")
                     .then(response => {
@@ -144,8 +142,68 @@
                         console.error("Lỗi khi lấy thông tin chi tiết học bổng:", error);
                     });
             </script>
+        </div> -->
+
+        <!-- <div class="grid-container">
+            <div class="grid-item item1">
+                <div>
+                    <img src="https://cdn.scholarships.com/img/ad-three.webp" alt="abc">
+                </div>
+            </div>
+            <div class="grid-item item2">
+
+            </div>
+            <div class="grid-item item3">
+                <div>
+                    <img src="https://cdn.scholarships.com/img/ad-three.webp" alt="abc">
+                </div>
+            </div>
+            <div class="grid-item item4">
+            </div>
+        </div> -->
+
+        <div class="grid-container">
+            <div class="grid-item" id="grid1"></div>
+            <div class="grid-item" id="grid2"></div>
+            <div class="grid-item" id="grid3"></div>
+            <div class="grid-item" id="grid4"></div>
         </div>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            // Function to get random data from your API
+            function getRandomData() {
+                const apiUrl = "http://localhost:2209/api/v1/trangchusv";
+
+                return $.ajax({
+                    url: apiUrl,
+                    method: "GET"
+                });
+            }
+
+            // Update each grid with data from the API
+            function updateGrids() {
+                getRandomData().done(function (data) {
+                    // Assuming your API response is in JSON format
+                    const randomItems = [];
+                    for (let i = 0; i < 4; i++) {
+                        const randomIndex = Math.floor(Math.random() * data.thongtin.length);
+                        randomItems.push(data.thongtin[randomIndex]);
+                    }
+
+                    $(".grid-item").each(function (index) {
+                        const item = randomItems[index];
+                        $(this).html(`<strong>Tên học bổng:</strong> ${item.tenHB}<br>
+                                     <strong>Đơn vị:</strong> ${item.donVi}<br>
+                                     <strong>Số tiền:</strong> ${item.soTien}<br>
+                                     `);
+                    });
+                });
+            }
+
+            // Update all the grids
+            updateGrids();
+        </script>
     </div>
 
 </body>
