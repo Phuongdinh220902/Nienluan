@@ -2,210 +2,405 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Học Bổng Đại Học Cần Thơ</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Bổng Đại Học Cần Thơ</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', "fallback for Inter", sans-serif;
+    }
 
-        }
+    /* Thiết lập font chữ và màu nền cho header */
+    header {
+      background-color: #F2FFFE;
+      color: #267765;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        /* Thiết lập font chữ và màu nền cho header */
-        header {
-            background-color: #F2FFFE;
-            color: #267765;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    header h1 {
+      margin: 0;
+      padding: 0;
+    }
 
-        header h1 {
-            margin: 0;
-            padding: 0;
-        }
+    .auth-buttons {
+      display: flex;
+      gap: 15px;
+      margin-right: 45px;
+    }
 
-        .auth-buttons {
-            display: flex;
-            gap: 15px;
-            margin-right: 45px;
-        }
+    .auth-buttons a {
+      background-color: #0F7771;
+      text-decoration: none;
+      color: white;
+      padding: 10px 15px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      font-family: 'Inter', "fallback for Inter", sans-serif;
+    }
 
-        .auth-buttons a {
-            background-color: #0F7771;
-            text-decoration: none;
-            color: white;
-            padding: 10px 15px;
-            border: 1px solid #fff;
-            border-radius: 5px;
-            font-family: 'Inter', "fallback for Inter", sans-serif;
-        }
+    .auth-buttons a:hover {
+      background-color: #0c5855;
+      color: white;
+    }
 
-        .auth-buttons a:hover {
-            background-color: #0c5855;
-            color: white;
-        }
 
-        /* Thiết lập kiểu dáng cho phần nội dung */
-        .container {
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    section {
+      padding: 0 6px;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    p {
+      display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0F7771;
+    }
+
+    img {
+      overflow-clip-margin: content-box;
+      overflow: clip;
+    }
+
+    .container1-container-fluid {
+      position: relative;
+      top: 80px;
+    }
+  </style>
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <header>
-        <div class="logo-ctu">
-            <img src="/ctu.png" alt="Ảnh của bạn">
-        </div>
-        <h1 class="tc"> Đăng Ký Học Bổng </h1>
+  <header class="header">
+    <div style="display: flex;">
 
-        <div class="auth-buttons">
-            <!-- <button type="button" id="btn-dk">Đăng ký</button>
-            <button type="button">Đăng nhập</button> -->
-            <a href="registersv.html">Đăng Ký</a>
-            <a href="loginsv.html">Đăng Nhập</a>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="content-wrapper">
-            <div class="text-content">
-                <h1>Tìm thấy được
-                    <span class="green-text"><br>học bổng<br></span>
-                    phù hợp nhất<br>với bản thân</br>
-                </h1>
-                <p class="mt">Chúng tôi khiến cho
-                    việc tìm kiếm và đăng ký học bổng của bạn dễ dàng hơn</p>
-            </div>
-            <div class="image-content">
-                <img src="blackpink.jpg" alt="Ảnh của bạn">
-            </div>
-        </div>
-        <div
-            style="width: 100%; height:8vw; background-color: #F2FFFE; clip-path: polygon(100% 0,0 100%, 0 0); padding: 0;">
-        </div>
-
-        <!-- <div id="api-data">
-            <script>
-                axios.get("http://localhost:2209/api/v1/trangchusv")
-                    .then(response => {
-                        var data = response.data['thongtin'];
-                        // console.log(data)
-
-                        if (data.length > 0) {
-                            var APIdata = document.getElementById("api-data");
-
-                            data.forEach(info => {
-                                console.log(info)
-                                var formattedHanDK = moment(info.hanDK).format("DD-MM-YYYY");
-
-                                var DieuKien = info.dieuKien || 'Không có dữ liệu';
-                                DieuKien = DieuKien.replace(/\n/g, '<br>');
-                                var Cachthamgia = info.cachThamGia || 'Không có dữ liệu';
-                                Cachthamgia = Cachthamgia.replace(/\n/g, '<br>');
-                                var TGtochuc = info.tgToChuc || 'Không có dữ liệu';
-                                TGtochuc = TGtochuc.replace(/\n/g, '<br>');
-
-                                var infoDiv = document.createElement("div");
-                                infoDiv.className = "info-card";
-
-                                infoDiv.innerHTML = `
-                                <p><strong>Tên học bổng:</strong> ${info.tenHB || 'Không có dữ liệu'}</p>
-                                <p><strong>Đơn vị:</strong> ${info.donVi || 'Không có dữ liệu'}</p>
-                                <p><strong>Điều kiện:</strong></br>${DieuKien}</p>
-                                <p><strong>Số tiền:</strong> ${info.soTien || 'Không có dữ liệu'}</p>
-                                <p><strong>Cách tham gia:</strong></br>${Cachthamgia}</p>
-                                <p><strong>Hạn đăng ký:</strong> ${formattedHanDK || 'Không có dữ liệu'}</p>
-                                <p><strong>Số lượng:</strong> ${info.soLuongDK || 'Không có dữ liệu'}</p>
-                                <p><strong>Thời gian tổ chức:</strong> </br>${TGtochuc}</p>
-                                <button type="button" class="btn-dangky">Đăng Ký</button>
-                                
-                            `;
-
-                                APIdata.appendChild(infoDiv);
-                            });
-                        } else {
-                            console.error("Không có dữ liệu học bổng.");
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Lỗi khi lấy thông tin chi tiết học bổng:", error);
-                    });
-            </script>
-        </div> -->
-
-        <!-- <div class="grid-container">
-            <div class="grid-item item1">
-                <div>
-                    <img src="https://cdn.scholarships.com/img/ad-three.webp" alt="abc">
-                </div>
-            </div>
-            <div class="grid-item item2">
-
-            </div>
-            <div class="grid-item item3">
-                <div>
-                    <img src="https://cdn.scholarships.com/img/ad-three.webp" alt="abc">
-                </div>
-            </div>
-            <div class="grid-item item4">
-            </div>
-        </div> -->
-
-        <div class="grid-container">
-            <div class="grid-item" id="grid1"></div>
-            <div class="grid-item" id="grid2"></div>
-            <div class="grid-item" id="grid3"></div>
-            <div class="grid-item" id="grid4"></div>
-        </div>
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            // Function to get random data from your API
-            function getRandomData() {
-                const apiUrl = "http://localhost:2209/api/v1/trangchusv";
-
-                return $.ajax({
-                    url: apiUrl,
-                    method: "GET"
-                });
-            }
-
-            // Update each grid with data from the API
-            function updateGrids() {
-                getRandomData().done(function (data) {
-                    // Assuming your API response is in JSON format
-                    const randomItems = [];
-                    for (let i = 0; i < 4; i++) {
-                        const randomIndex = Math.floor(Math.random() * data.thongtin.length);
-                        randomItems.push(data.thongtin[randomIndex]);
-                    }
-
-                    $(".grid-item").each(function (index) {
-                        const item = randomItems[index];
-                        $(this).html(`<strong>Tên học bổng:</strong> ${item.tenHB}<br>
-                                     <strong>Đơn vị:</strong> ${item.donVi}<br>
-                                     <strong>Số tiền:</strong> ${item.soTien}<br>
-                                     `);
-                    });
-                });
-            }
-
-            // Update all the grids
-            updateGrids();
-        </script>
+      <div class="logo-ctu">
+        <img src="/ctu.png" alt="Ảnh của bạn">
+      </div>
+      <h1 class="tc"> Đăng Ký Học Bổng </h1>
     </div>
 
+    <div class="auth-buttons">
+      <!-- <button type="button" id="btn-dk">Đăng ký</button>
+            <button type="button">Đăng nhập</button> -->
+      <a href="registersv.html">Đăng Ký</a>
+      <a href="loginsv.html">Đăng Nhập</a>
+    </div>
+  </header>
+
+  <div class="container1-container-fluid">
+    <div class="content-wrapper">
+      <div class="text-content">
+        <h1>Tìm thấy được
+          <span class="green-text"><br>học bổng<br></span>
+          phù hợp nhất<br>với bản thân</br>
+        </h1>
+        <p class="mt">Chúng tôi khiến cho
+          việc tìm kiếm và đăng ký học bổng của bạn dễ dàng hơn</p>
+      </div>
+      <div class="image-content">
+        <img src="/header.webp" alt="Ảnh của bạn">
+      </div>
+    </div>
+    <div
+      style="width: 100%; height:8vw; background-color: #F2FFFE; clip-path: polygon(100% 0,0 100%, 0 0); padding: 0;">
+    </div>
+    <section class="container section-background">
+      <div>
+        <div id="featured-side-grid"></div>
+        <div id="featured-content-grid">
+          <section class="offer-slides">
+            <div class="featured-card">
+              <div class="featured-card-text-wrapper">
+                <div>
+                  <p>Đa dạng các loại học bổng từ các doanh nghiệp trong và ngoài nước</p>
+                </div>
+                <div class="featured-card-image-wrapper">
+                  <a href="/loginsv.html" class="greenbutton" alt="scholarship search">Đăng Nhập
+                    Để Gửi Hồ Sơ</a>
+                </div>
+              </div>
+              <div>
+                <img src="https://cdn.scholarships.com/img/ad-two.webp" alt="Offer Two" />
+              </div>
+
+            </div>
+            <div class="featured-card">
+              <div class="featured-card-text-wrapper">
+                <div style="vertical-align: top !important;">
+                  <p>Nộp hồ sơ đăng ký nhanh chóng và dễ dàng</p>
+                </div>
+                <div class="featured-card-image-wrapper">
+                  <a href="/scholarship-search" class="greenbutton" alt="scholarship search">Đăng Nhập
+                    Để Gửi Hồ Sơ</a>
+                </div>
+              </div>
+              <div>
+                <img src="https://cdn.scholarships.com/img/ad-three.webp" alt="Offer Three" />
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- <td>
+            <button id="buy-btn" class="greenbutton btn-details" type="submit">Chi tiết</button>
+          </td> -->
+
+    <div class="container1">
+      <table class="table table-striped table-allcustomer">
+        <thead>
+          <tr>
+            <th scope="col">Tên Học Bổng</th>
+            <th scope="col">Đơn Vị</th>
+            <th scope="col">Hạn Đăng Ký</th>
+            <th scope="col"> </th>
+          </tr>
+        </thead>
+        <tbody id="infoTableBody"></tbody>
+        <!-- <td>
+          <button id="buy-btn" class="greenbutton btn-details" type="submit">Chi tiết</button>
+        </td> -->
+      </table>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+      const infoTableBody = document.getElementById('infoTableBody');
+
+      axios.get("http://localhost:2209/api/v1/trangchu1")
+        .then(response => {
+          var thongtin = response.data.thongtin;
+          while (infoTableBody.firstChild) {
+            infoTableBody.removeChild(infoTableBody.firstChild);
+          }
+
+          thongtin.forEach(info => {
+            var row = document.createElement("tr");
+            var formattedHanDK = moment(info.hanDK).format("DD-MM-YYYY");
+
+            var tenHBCell = document.createElement("td");
+            tenHBCell.textContent = info.tenHB;
+            row.appendChild(tenHBCell);
+
+            var donViCell = document.createElement("td");
+            donViCell.textContent = info.donVi;
+            row.appendChild(donViCell);
+
+
+            var hanDKCell = document.createElement("td");
+            hanDKCell.textContent = formattedHanDK;
+            row.appendChild(hanDKCell);
+
+
+            var detailCell = document.createElement("td");
+            var detailButton = document.createElement("button");
+            detailButton.textContent = "Chi tiết";
+            detailButton.addEventListener("click", function () {
+              // Lưu maHB vào localStorage
+              localStorage.setItem("selectedMaHB", info.maHB);
+              var openBtn = document.querySelector(".modal");
+              var modalContainer = document.querySelector(".modal-container");
+              var closeBtn = document.querySelector(".modal-close");
+
+              detailButton.onclick = function () {
+                openBtn.classList.add("open");
+              };
+
+              closeBtn.onclick = function () {
+                openBtn.classList.remove("open");
+              };
+
+              openBtn.onclick = function () {
+                openBtn.classList.remove("open");
+              };
+
+              modalContainer.onclick = function (event) {
+                event.stopPropagation();
+              };
+
+              /* Menu */
+              var btnMenu = document.getElementById("js-menu");
+              var header = document.getElementById("header__home");
+              var headerHeight = header.clientHeight;
+
+              btnMenu.onclick = function () {
+                var isClosed = header.clientHeight === headerHeight;
+                if (isClosed) {
+                  header.style.height = "auto";
+                } else {
+                  header.style.height = null;
+                }
+              };
+
+              //đóng menu khi chọn
+              var menuItems = document.querySelectorAll('.nav li a[href*="#"');
+
+              for (var i = 0; i < menuItems.length; i++) {
+                var menuItem = menuItems[i];
+
+                menuItem.onclick = function (event) {
+                  var isParentMenu =
+                    this.nextElementSibling &&
+                    this.nextElementSibling.classList.contains("subnav");
+                  if (isParentMenu) {
+                    event.preventDefault();
+                  } else {
+                    header.style.height = null;
+                  }
+                };
+              }
+            });
+            detailCell.appendChild(detailButton);
+            row.appendChild(detailCell);
+
+            infoTableBody.appendChild(row);
+          });
+        })
+        .catch(error => {
+          console.error("Lỗi khi lấy thông tin học bổng:", error);
+        });
+    </script>
+
+
+
+    <div class="modal">
+      <div class="modal-container">
+        <div class="modal-close">
+          <div class="icon-close"> X </div>
+        </div>
+
+        <header class="modal-header1">
+          Đăng ký học bổng
+        </header>
+
+        <div class="modal-body">
+          <label for="name" class="modal-label">
+            Tên học bổng
+          </label>
+          <input id="name" type="text" class="modal-input" placeholder="Tên hoc bổng" />
+
+          <label for="donvi" class="modal-label">
+            Tên đơn vị
+          </label>
+          <input id="donvi" type="text" class="modal-input" placeholder="Tên đơn vị" />
+
+          <label for="dieukien" class="modal-label">
+            Điều kiện
+          </label>
+          <input id="donvi" type="text" class="modal-input" placeholder="Điều kiện" />
+
+          <label for="handk" class="modal-label">
+            Hạn đăng ký
+          </label>
+          <input id="handk" type="text" class="modal-input" placeholder="Hạn đăng ký" />
+
+          <label for="sotien" class="modal-label">
+            Số tiền
+          </label>
+          <input id="sotien" type="number" class="modal-input" placeholder="Số tiền" />
+
+          <label for="thoigiantochuc" class="modal-label">
+            Thời gian tổ chức
+          </label>
+          <input id="thoigiantochuc" type="text" class="modal-input" placeholder="Thời gian tổ chức" />
+
+          <button class="buy-stickets">
+            Ứng tuyển
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- <script>
+    var buyBtn = document.querySelector("#buy-btn");
+    var openBtn = document.querySelector(".modal");
+    var modalContainer = document.querySelector(".modal-container");
+    var closeBtn = document.querySelector(".modal-close");
+
+    // for (var buyBtn of buyBtns) {
+    buyBtn.onclick = function () {
+      openBtn.classList.add("open");
+    };
+    // }
+
+    closeBtn.onclick = function () {
+      openBtn.classList.remove("open");
+    };
+
+    openBtn.onclick = function () {
+      openBtn.classList.remove("open");
+    };
+
+    modalContainer.onclick = function (event) {
+      event.stopPropagation();
+    };
+
+    /* Menu */
+    var btnMenu = document.getElementById("js-menu");
+    var header = document.getElementById("header__home");
+    var headerHeight = header.clientHeight;
+
+    btnMenu.onclick = function () {
+      var isClosed = header.clientHeight === headerHeight;
+      if (isClosed) {
+        header.style.height = "auto";
+      } else {
+        header.style.height = null;
+      }
+    };
+
+    //đóng menu khi chọn
+    var menuItems = document.querySelectorAll('.nav li a[href*="#"');
+
+    for (var i = 0; i < menuItems.length; i++) {
+      var menuItem = menuItems[i];
+
+      menuItem.onclick = function (event) {
+        var isParentMenu =
+          this.nextElementSibling &&
+          this.nextElementSibling.classList.contains("subnav");
+        if (isParentMenu) {
+          event.preventDefault();
+        } else {
+          header.style.height = null;
+        }
+      };
+    }
+
+    //đóng menu khi click bên ngoài menu
+  </script> -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

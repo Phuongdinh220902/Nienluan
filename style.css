@@ -197,6 +197,18 @@
 
 
 /* trangchusv */
+.header {
+    display: flex;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    left: 0;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.logo-ctu {
+    margin-right: 10px;
+}
 
 .logo-ctu img {
     width: 50px;
@@ -206,8 +218,8 @@
 }
 
 .tc {
-    margin-right: 450px;
-    font-size: 45px;
+    margin-top: 5px;
+    font-size: 32px;
     font-family: 'Inter', "fallback for Inter", sans-serif;
 }
 
@@ -224,6 +236,9 @@
     justify-content: space-between;
     align-items: center;
     background-color: #F2FFFE;
+
+    padding-top: 32px;
+
 }
 
 .content-wrapper h1 {
@@ -245,6 +260,7 @@
 
 
 .text-content {
+    margin-top: -64px;
     flex: 1;
     padding: 20px;
 }
@@ -256,42 +272,10 @@
 
 .image-content img {
     width: 480px;
-    height: 350px;
+    height: 500px;
     margin-right: 80px;
     margin-bottom: 80px;
-    /* object-fit: cover; */
-}
-
-
-
-/* CSS cho phần hiển thị thông tin học bổng */
-#api-data {
-    margin-top: 20px;
-    border-radius: 10px;
-}
-
-.info-card {
-    text-align: center;
-    border: 2px solid #97eed1;
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #a1def5;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    margin-left: 180px;
-    /* Thêm khoảng cách giữa các khung thông tin */
-    max-width: 800px;
-    min-height: 300px;
-}
-
-.info-card p {
-    margin: 10px 0;
-    font-size: 18px;
-}
-
-.info-card strong {
-    font-weight: bold;
-    font-size: 18px;
+    object-fit: cover;
 }
 
 .btn-dangky {
@@ -314,40 +298,233 @@
     background-color: #0056b3;
 }
 
-.grid-container {
+
+.section-background {
+    background-color: #FFFFFF;
+}
+
+#featured-side-grid {
+    display: inline-grid;
+    width: 100%;
+}
+
+#featured-content-grid>section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* Chia lưới thành 2 cột */
-    grid-gap: 20px;
-    /* Khoảng cách giữa các phần */
-    grid-template-areas:
-        "item1 item2"
-        "item3 item4";
-    /* Xác định vị trí của mỗi phần trong lưới */
+    grid-template-columns: repeat(2, 2fr);
+    flex-wrap: wrap;
+    gap: 4rem;
+    /* max-width: 1000px; */
+    margin: 32px 0;
 }
 
-.grid-item {
-    padding: 20px;
-    border: 1px solid #ccc;
+.greenbutton:hover {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.featured-card {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+}
+
+.featured-card {
+    display: grid;
+    grid-template-columns: 200px minmax(300px, auto);
+    height: 450px;
+    box-shadow: 0px 9px 20px rgba(15, 119, 113, 0.15);
+}
+
+.featured-card-text-wrapper {
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.featured-card-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    min-height: 200px;
+    vertical-align: top !important;
+    flex-grow: 1;
+}
+
+.featured-card-text-wrapper>div:first-child>p:nth-child(2) {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.featured-card-text-wrapper>div:last-child {
+    height: 40px;
+    vertical-align: top !important;
+}
+
+.featured-card-text-wrapper>div:first-child>p:nth-child(1) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+
+.greenbutton {
+    background-color: #0F7771;
+    background-image: linear-gradient(180deg, #30CEBB -152.94%, #0F7771 154.41%);
     text-align: center;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
-.item1 {
-    grid-area: item1;
-    /* Xác định vị trí của phần thứ nhất */
+
+.featured-card-text-wrapper>div:last-child>a {
+    position: relative;
+    left: 130px;
 }
 
-.item2 {
-    grid-area: item2;
-    /* Xác định vị trí của phần thứ hai */
+.greenbutton:hover {
+    background-image: linear-gradient(180deg, #000 -152.94%, #0F7771 154.41%);
 }
 
-.item3 {
-    grid-area: item3;
-    /* Xác định vị trí của phần thứ ba */
+
+.featured-card img {
+    width: 100%;
+    max-height: 400px;
+    min-height: 250px;
+    object-fit: cover;
 }
 
-.item4 {
-    grid-area: item4;
-    /* Xác định vị trí của phần thứ tư */
+/* Form đăng ký */
+.table-allcustomer th {
+    text-align: center;
+    font-size: 1.4em;
+    line-height: 1.4em;
+    background-color: #0F7771;
+    margin-bottom: 32px;
+}
+
+.container1 {
+    margin: 0 32px 32px 32px;
+}
+
+#myTable td {
+    padding: 8px;
+    font-size: 1.2em;
+    vertical-align: inherit !important;
+}
+
+.btn-details {
+    font-size: 1.2em;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-container {
+    position: relative;
+    background-color: #fff;
+    width: 900px;
+    max-width: calc(100% - 32px);
+    min-height: 200px;
+    /* max-height: 500px; */
+    animation: modalFadeIn ease 0.4s;
+}
+
+.icon-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    font-size: 16px;
+    padding: 15px 20px;
+    font-weight: 700;
+}
+
+.icon-close:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+.modal-header1 {
+    font-size: 2em;
+    display: block;
+    height: auto;
+    text-align: center;
+    color: #fff;
+    background-color: #0F7771;
+
+}
+
+.icon-bag {
+    margin-right: 16px;
+}
+
+.modal-body {
+    padding: 16px;
+}
+
+.modal-label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.modal-input {
+    border: 1px solid #ccc;
+    width: calc(100% - 10px);
+    height: 43px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.buy-stickets {
+    background: #0F7771;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 16px;
+    border: none;
+    width: 100%;
+    padding: 18px;
+    cursor: pointer;
+}
+
+.buy-stickets:hover {
+    color: #000;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
