@@ -289,12 +289,12 @@
                 <div class="overlay-panel overlay-left">
                     <h1>Chào mừng bạn đến với chúng tôi</h1>
                     <p>Nhập thông tin cá nhân để đăng ký tài khoản</p>
-                    <button class="ghost" id="signIn">Đăng Ký</button>
+                    <button class="ghost" id="signIn">Đăng Nhập</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Chào mừng bạn trở lại!</h1>
                     <p> </p>
-                    <button class="ghost" id="signUp">Đăng Nhập</button>
+                    <button class="ghost" id="signUp">Đăng Ký</button>
                 </div>
             </div>
         </div>
@@ -303,7 +303,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         document.getElementById("loginButton").addEventListener("click", function () {
-            var username = document.getElementById("email").value;
+            var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
 
             var userData = {
@@ -324,15 +324,16 @@
                         const errorElement = document.createElement('p');
                         errorElement.textContent = "Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập và thử lại.";
 
-                        const errorContainer = document.getElementById('error-container');
-                        errorContainer.innerHTML = ''; // Xóa nội dung cũ trong container 
-                        errorContainer.appendChild(errorElement);
+                        // const errorContainer = document.getElementById('error-container');
+                        // errorContainer.innerHTML = ''; // Xóa nội dung cũ trong container 
+                        // errorContainer.appendChild(errorElement);
                     }
                 })
                 .catch(error => {
                     console.error("Lỗi khi đăng nhập:", error);
                 });
         });
+
     </script>
 
     <script>
