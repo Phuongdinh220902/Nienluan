@@ -263,16 +263,17 @@
 </head>
 
 <body>
-    <!-- <h2>Sign in/up Form</h2> -->
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="#">
                 <h1>Đăng Ký Tài Khoản</h1>
-                <input type="text" placeholder="Họ Tên" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="text" id="hoTen" placeholder="Họ Tên" />
+                <input type="text" id="mssv" placeholder="Mã Số Sinh Viên" />
+                <input type="email" id="emailsv" placeholder="Email" />
+                <input type="password" id="passwordsv" placeholder="Password" />
+                <input type="text" id="nganhHoc" placeholder="Ngành Học" />
 
-                <button>Đăng Ký</button>
+                <button type="button" id="registerButton" onclick="submitData()">Đăng Ký</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -300,7 +301,65 @@
         </div>
     </div>
 
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 
+    <script>
+        document.getElementById('registerButton').addEventListener('click', async () => {
+            const hoTen = document.getElementById('hoTen').value;
+            const mssv = document.getElementById('mssv').value;
+            const email = document.getElementById('emailsv').value;
+            const password = document.getElementById('passwordsv').value;
+            const nganhHoc = document.getElementById('nganhHoc').value;
+
+            try {
+                const response = await axios.post('http://localhost:2209/api/v1/registersv', {
+                    hoTen,
+                    mssv,
+                    email,
+                    password,
+                    nganhHoc,
+                });
+                console.log("abc")
+                // Xử lý phản hồi từ API ở đây (ví dụ: hiển thị thông báo thành công)
+                if (response.data['check'] == "1") {
+                    console.log("TC")
+                    window.location.href = 'trangchusv.html';
+                } else {
+                    // Hiển thị thông báo lỗi nếu có lỗi từ API
+                    alert('Đăng ký không thành công. Vui lòng thử lại sau.');
+                }
+            } catch (error) {
+                // Xử lý lỗi từ API ở đây (ví dụ: hiển thị thông báo lỗi)
+                console.error('Đã xảy ra lỗi:', error.response.data.message);
+            }
+        });
+    </script> -->
+
+    <script>
+
+        function submitData() {
+            const formData = {
+                hoTen: document.getElementById('hoTen').value,
+                mssv: document.getElementById('mssv').value,
+                email: document.getElementById('emailsv').value,
+                password: document.getElementById('passwordsv').value,
+                nganhHoc: document.getElementById('nganhHoc').value,
+            };
+
+            axios.post('http://localhost:2209/api/v1/registersv', formData)
+                .then(response => {
+                    console.log('Dữ liệu đã được gửi thành công!', response);
+                    // Xử lý thêm logic ở đây nếu cần
+                    alert("Đăng ký tài khoản thành công!")
+                    window.location.href = "trangchusv.html";
+                })
+                .catch(error => {
+                    console.error('Lỗi khi gửi dữ liệu:', error);
+                });
+        }
+    </script>
+
     <script>
         document.getElementById("loginButton").addEventListener("click", function () {
             var email = document.getElementById("email").value;
@@ -320,21 +379,19 @@
                         window.location.href = "trangchusv.html";
                     } else {
                         console.log("TB")
-                        // alert("Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập và thử lại.");
-                        const errorElement = document.createElement('p');
-                        errorElement.textContent = "Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập và thử lại.";
+                        alert("Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập và thử lại.");
+                        // const errorElement = document.createElement('p');
+                        // errorElement.textContent = "Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập và thử lại.";
 
-                        // const errorContainer = document.getElementById('error-container');
-                        // errorContainer.innerHTML = ''; // Xóa nội dung cũ trong container 
-                        // errorContainer.appendChild(errorElement);
                     }
                 })
                 .catch(error => {
                     console.error("Lỗi khi đăng nhập:", error);
                 });
         });
-
     </script>
+
+
 
     <script>
         const signUpButton = document.getElementById('signUp');
