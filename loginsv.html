@@ -343,12 +343,14 @@
                     console.log("Phản hồi từ server:", response.data);
                     if (response.data['check'] == "1") {
                         console.log("TC")
+                        console.log(response.data['id_sv'])
+                        localStorage.setItem("id_sv", response.data['id_sv']); //luu
+
                         window.location.href = "homesv.html";
+
                     } else {
                         console.log("TB")
                         alert("Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập và thử lại.");
-                        // const errorElement = document.createElement('p');
-                        // errorElement.textContent = "Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập và thử lại.";
 
                     }
                 })

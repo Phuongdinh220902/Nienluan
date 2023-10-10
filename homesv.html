@@ -195,6 +195,7 @@
 
                                 var infoDiv = document.createElement("div");
 
+
                                 var formattedHanDK = moment(info.hanDK).format("DD-MM-YYYY");
 
                                 var DieuKien = info.dieuKien
@@ -231,6 +232,50 @@
                     row.appendChild(detailCell);
 
                     infoTableBody.appendChild(row);
+
+                    // Gán sự kiện click vào nút "Ứng tuyển"
+                    document.getElementById('apply-button').addEventListener('click', function () {
+                        // Khi nút được ấn, kích hoạt hộp thoại chọn tệp
+                        document.getElementById('file-input').click();
+                    });
+
+                    // Xử lý sự kiện khi người dùng đã chọn tệp
+                    document.getElementById('file-input').addEventListener('change', function () {
+                        const filePath = this.value; // Đường dẫn đến tệp đã chọn
+                        const confirmation = confirm(`Bạn có muốn tải tệp này lên không?\nTệp đã chọn: ${filePath}`);
+
+                        if (confirmation) {
+                            // Gửi tệp lên server sử dụng Axios
+                            const fileInput = document.getElementById('file-input');
+                            const file = fileInput.files[0];
+                            if (file) {
+                                const formData = new FormData();
+                                formData.append('file', file);
+                                let id_sv = localStorage.getItem('id_sv')
+                                console.log(id_sv)
+                                console.log(info.maHB)
+                                // Thêm id_sv và maHB vào formData
+                                formData.append('id_sv', id_sv);
+                                formData.append('maHB', info.maHB);
+
+
+                                axios.post('http://localhost:2209/api/v1/uploadfile', formData)
+                                    .then(response => {
+                                        for (let [key, value] of formData) {
+                                            console.log(key, value);
+                                        }
+                                        alert('Tệp đã được tải lên thành công.');
+                                    })
+                                    .catch(error => {
+                                        for (let [key, value] of formData) {
+                                            console.log(key, value);
+                                        }
+                                        alert('Đã xảy ra lỗi khi tải tệp lên server.');
+                                        console.error('Lỗi:', error);
+                                    });
+                            }
+                        }
+                    });
                 });
             })
             .catch(error => {
@@ -254,11 +299,17 @@
                 <!-- Thông tin học bổng sẽ được hiển thị ở đây -->
             </div>
 
-            <button class="buy-stickets">
+            <button class="buy-stickets" id="apply-button">
                 Ứng tuyển
             </button>
+            <input type="file" id="file-input" style="display: none;">
         </div>
     </div>
+
+    <script>
+
+    </script>
+
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
