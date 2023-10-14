@@ -113,6 +113,25 @@
     /* Hình con trỏ khi di chuột */
 }
 
+.btn-hoso-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    /* Điều chỉnh theo chiều cao mong muốn */
+}
+
+.btn-hoso {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
 .infoForm {
     width: 500px;
     margin: 0 auto;

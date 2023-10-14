@@ -89,7 +89,10 @@
                     <button type="button" class="btn btn-primary" id="update-hb">Chỉnh Sửa</button>
                     <button type="button" class="btn btn-danger" id="delete-hb">Xóa</button>
                     <button type="button" class="btn-huy">Hủy</button>
-                    <button type="button" class="btn-hoso">Hồ sơ</button>
+
+                </div>
+                <div class="btn-hoso-container">
+                    <button type="button" class="btn-hoso" id="hoso">Hồ sơ ứng tuyển</button>
                 </div>
             </div>
         </div>
@@ -97,9 +100,14 @@
 
     <script>
         const updateHbButton = document.getElementById('update-hb');
+        const HosoButton = document.getElementById('hoso');
 
         updateHbButton.addEventListener('click', function () {
             window.location.href = "update.html";
+        });
+
+        HosoButton.addEventListener('click', function () {
+            window.location.href = "hosoungtuyen.html";
         });
 
         document.querySelector(".btn-huy").addEventListener("click", function () {
