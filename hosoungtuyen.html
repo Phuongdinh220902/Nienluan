@@ -16,6 +16,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col">STT</th>
                     <th scope="col">ID_SV</th>
                     <th scope="col">File</th>
                 </tr>
@@ -72,51 +73,57 @@
 
         const infoTableBody = document.getElementById('infoTableBody');
         axios.post("http://localhost:2209/api/v1/hsungtuyen", { maHB: selectedMaHB })
-        //     .then(response => {
-        //         var thongtin = response.data.message;
-        //         while (infoTableBody.firstChild) {
-        //             infoTableBody.removeChild(infoTableBody.firstChild);
-        //         }
 
-        //         thongtin.forEach(info => {
-        //             var row = document.createElement("tr");
-
-        //             var tenHBCell = document.createElement("td");
-        //             tenHBCell.textContent = info.is_sv;
-        //             row.appendChild(tenHBCell);
-
-        //             var donViCell = document.createElement("td");
-        //             donViCell.textContent = info.ten_file;
-        //             row.appendChild(donViCell);
-
-
-        //             infoTableBody.appendChild(row);
-        //         });
-        //     })
-
-        // .then(response => {
-        //     var info = response.data.info;
-        //     var infoDetail = document.getElementById("infoDetail");
-        //     info.forEach(info => {
-        //         var row = document.createElement("tr");
-
-        //         var tenHBCell = document.createElement("td");
-        //         tenHBCell.textContent = info.is_sv;
-        //         row.appendChild(tenHBCell);
-
-        //         var donViCell = document.createElement("td");
-        //         donViCell.textContent = info.ten_file;
-        //         row.appendChild(donViCell);
-
-        //         infoTableBody.appendChild(row);
-        //     });
-        // })
-        // .catch(error => {
-        //     console.error("Lỗi khi lấy thông tin học bổng:", error);
-        // });
     </script>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const infoTableBody = document.getElementById('infoTableBody');
+            var selectedMaHB = localStorage.getItem("selectedMaHB");
+
+            axios.post("http://localhost:2209/api/v1/hsungtuyen", { maHB: selectedMaHB })
+                .then(response => {
+                    const infoList = response.data.sv;
+
+                    if (!infoList || infoList.length === 0) {
+                        console.error("Không tìm thấy thông tin học bổng");
+                        return;
+                    }
+
+                    // Xóa bỏ các hàng cũ
+                    while (infoTableBody.firstChild) {
+                        infoTableBody.removeChild(infoTableBody.firstChild);
+                    }
+
+                    // Tạo hàng mới từ dữ liệu nhận được
+                    infoList.forEach((info, index) => {
+                        const row = infoTableBody.insertRow(-1);
+
+                        // Thêm cột STT
+                        const indexCell = row.insertCell(0);
+                        indexCell.textContent = index + 1; // STT bắt đầu từ 1
+
+                        const idCell = row.insertCell(1);
+                        idCell.textContent = info.id_sv;
+
+                        // Thêm cột liên kết tải xuống file
+                        const fileCell = row.insertCell(2);
+                        const downloadLink = document.createElement('a');
+                        // Đường dẫn tới file trong cơ sở dữ liệu
+                        let linkfile = "http://localhost:2209/ungtuyen/" + info.ten_file;
+                        downloadLink.href = linkfile;
+                        downloadLink.textContent = 'Xem file';
+                        fileCell.appendChild(downloadLink);
+                    });
+                })
+                .catch(error => {
+                    console.error("Lỗi khi lấy thông tin học bổng:", error);
+                });
+        });
+    </script>
+
+
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             const infoTableBody = document.getElementById('infoTableBody');
             var selectedMaHB = localStorage.getItem("selectedMaHB");
@@ -138,18 +145,27 @@
                     // Tạo hàng mới từ dữ liệu nhận được
                     const row = infoTableBody.insertRow(-1);
 
-                    const idCell = row.insertCell(0);
+                    // Thêm cột STT
+                    const indexCell = row.insertCell(0);
+                    indexCell.textContent = 1; // Giả sử bạn muốn bắt đầu từ 1
+
+                    const idCell = row.insertCell(1);
                     idCell.textContent = info.id_sv;
 
-                    const fileCell = row.insertCell(1);
-                    fileCell.textContent = info.ten_file;
+                    // Thêm cột liên kết tải xuống file
+                    const fileCell = row.insertCell(2);
+                    const downloadLink = document.createElement('a');
+                    // Đường dẫn tới file trong cơ sở dữ liệu
+                    let linkfile = "http://localhost:2209/ungtuyen/" + info.ten_file
+                    downloadLink.href = linkfile
+                    downloadLink.textContent = 'Xem file';
+                    fileCell.appendChild(downloadLink);
                 })
                 .catch(error => {
                     console.error("Lỗi khi lấy thông tin học bổng:", error);
                 });
         });
-    </script>
-
+    </script> -->
 
 
 

@@ -210,10 +210,6 @@
     /* Màu nền khi di chuột qua */
 }
 
-/* .form-control{
-    display: none;
-} */
-
 
 /* trangchusv */
 .header {
@@ -410,9 +406,7 @@
     object-fit: cover;
 }
 
-/* Form đăng ký */
 .table-allcustomer th {
-    text-align: center;
     font-size: 1.4em;
     line-height: 1.4em;
     background-color: #0F7771;
@@ -420,7 +414,10 @@
 }
 
 .container1 {
-    margin: 0 32px 32px 32px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 25px 25px;
+    /* margin: 0 32px 32px 32px; */
 }
 
 #myTable td {

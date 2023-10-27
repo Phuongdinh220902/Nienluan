@@ -268,11 +268,11 @@
         <div class="form-container sign-up-container">
             <form action="#">
                 <h1>Đăng Ký Tài Khoản</h1>
-                <input type="text" id="hoTen" placeholder="Họ Tên" />
+                <input type="text" id="tenSV" placeholder="Họ Tên" />
                 <input type="text" id="mssv" placeholder="Mã Số Sinh Viên" />
                 <input type="email" id="emailsv" placeholder="Email" />
                 <input type="password" id="passwordsv" placeholder="Password" />
-                <input type="text" id="nganhHoc" placeholder="Ngành Học" />
+                <input type="text" id="nganh_hoc" placeholder="Ngành Học" />
 
                 <button type="button" id="registerButton" onclick="submitData()">Đăng Ký</button>
             </form>
@@ -282,7 +282,7 @@
                 <h1>Đăng Nhập</h1>
                 <input type="email" id="email" name="email" placeholder="Email" />
                 <input type="password" id="password" name="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
+                <a href="forgetpw.html">Forgot your password?</a>
                 <button type="button" id="loginButton">Đăng Nhập</button>
             </form>
         </div>
@@ -308,11 +308,11 @@
 
         function submitData() {
             const formData = {
-                hoTen: document.getElementById('hoTen').value,
+                tenSV: document.getElementById('tenSV').value,
                 mssv: document.getElementById('mssv').value,
                 email: document.getElementById('emailsv').value,
                 password: document.getElementById('passwordsv').value,
-                nganhHoc: document.getElementById('nganhHoc').value,
+                nganh_hoc: document.getElementById('nganh_hoc').value,
             };
 
             axios.post('http://localhost:2209/api/v1/registersv', formData)

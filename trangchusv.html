@@ -90,7 +90,7 @@
     <div style="display: flex;">
 
       <div class="logo-ctu">
-        <img src="/ctu.png" alt="Ảnh của bạn">
+        <img src="./ctu.png" alt="Ảnh của bạn">
       </div>
       <h1 class="tc"> Đăng Ký Học Bổng </h1>
     </div>
@@ -114,7 +114,7 @@
           việc tìm kiếm và đăng ký học bổng của bạn dễ dàng hơn</p>
       </div>
       <div class="image-content">
-        <img src="/header.webp" alt="Ảnh của bạn">
+        <img src="./header.webp" alt="Ảnh của bạn">
       </div>
     </div>
     <div
@@ -309,10 +309,10 @@
 
 
         <div class="modal-body">
-          <!-- Thông tin học bổng sẽ được hiển thị ở đây -->
+
         </div>
 
-        <button class="buy-stickets">
+        <button class="buy-stickets" id="ungtuyen">
           Ứng tuyển
         </button>
       </div>
@@ -321,6 +321,13 @@
 
 
 
+  <script>
+    const ungtuyenbt = document.getElementById('ungtuyen');
+
+    ungtuyenbt.addEventListener('click', function () {
+      window.location.href = "loginsv.html";
+    });
+  </script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
